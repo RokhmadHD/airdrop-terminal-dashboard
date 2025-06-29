@@ -1,10 +1,25 @@
 // src/lib/api.ts
-
+'use server';
 import { Airdrop, CommentWithReplies, Guide, Comment, Profile, KnowledgeBaseSectionWithGuides, Notification, AirdropFormData, AdminUserView, AdminUserDetail, AnalyticsOverview, RecentActivityData, PostFormData, Post } from "./types";
-
+import { revalidatePath } from "next/cache";
 // Pastikan URL ini menunjuk ke backend FastAPI Anda
 // Gunakan variabel environment untuk ini di produksi!
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://192.168.1.8:8000";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+
+
+export async function getMe(token: string): Promise<Profile | null> {
+  try {
+    const response = await fetch(`${API_BASE_URL}/auth/me`, {
+      headers: { 'Authorization': `Bearer ${token}` }
+    });
+    if (response.status === 404) return null;
+    if (!response.ok) throw new Error("Failed to fetch user profile");
+    return response.json();
+  } catch (error) {
+    console.error("Error fetching /me:", error);
+    return null;
+  }
+}
 
 export async function getAirdrops(): Promise<Airdrop[]> {
   try {
@@ -92,7 +107,7 @@ export async function getGuides(): Promise<Guide[]> {
 }
 
 export async function createPost(data: PostFormData, token: string): Promise<Post> {
-  const response = await fetch(`${API_BASE_URL}/blog`, { // URL endpoint blog
+  const response = await fetch(`${API_BASE_URL}/guides`, { // URL endpoint blog
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
     body: JSON.stringify(data),
@@ -106,7 +121,7 @@ export async function createPost(data: PostFormData, token: string): Promise<Pos
 
 export async function updatePost(slug: string, data: Partial<PostFormData>, token: string): Promise<Post> {
   // ... implementasi mirip updateAirdrop
-  const response = await fetch(`${API_BASE_URL}/blog`, { // URL endpoint blog
+  const response = await fetch(`${API_BASE_URL}/guides/${slug}`, { // URL endpoint blog
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
     body: JSON.stringify(data),
@@ -115,6 +130,8 @@ export async function updatePost(slug: string, data: Partial<PostFormData>, toke
     const error = await response.json();
     throw new Error(error.detail || "Failed to create post");
   }
+
+  revalidatePath('/dashboard/guides/')
   return response.json();
 }
 

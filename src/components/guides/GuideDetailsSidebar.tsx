@@ -34,17 +34,6 @@ export function GuideDetailsSidebar({
       <h2 className="text-lg font-semibold">Guide Details</h2>
 
       <div className="space-y-2">
-        <Label htmlFor="title">Title</Label>
-        <Input
-          id="title"
-          name="title"
-          value={formData.title}
-          onChange={onFormChange}
-          placeholder="Guide title"
-        />
-      </div>
-
-      <div className="space-y-2">
         <Label htmlFor="description">Description</Label>
         <Textarea
           id="description"

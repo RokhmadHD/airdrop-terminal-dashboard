@@ -122,6 +122,8 @@
   
 }
 
+@custom-variant sidebar-expanded (&:is(.sidebar-expanded *));
+
 /* Untuk browser berbasis WebKit (Chrome, Safari, Edge baru, Opera) */
 html::-webkit-scrollbar {
     display: none;

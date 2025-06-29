@@ -54,8 +54,10 @@ export default function MediaLibraryPage() {
     }
 
     useEffect(() => {
-        loadMedia();
-    }, []);
+        if(files.length <= 0){
+            loadMedia();
+        }
+    }, [files]);
 
 
 

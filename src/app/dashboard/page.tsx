@@ -21,7 +21,7 @@ export default async function DashboardPage() {
   }
 
   return (
-    <div className="container mx-auto py-10">
+    <div className="w-full mx-auto">
       <h1 className="text-3xl font-bold tracking-tight mb-6">Overview</h1>
 
       {/* Stat Cards */}

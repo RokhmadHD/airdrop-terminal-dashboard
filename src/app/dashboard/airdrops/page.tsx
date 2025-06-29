@@ -12,7 +12,7 @@ export default async function AirdropsDashboardPage() {
     const airdrops = await getAirdrops();
 
     return (
-        <div className="container mx-auto py-10">
+        <div className="">
             <div className="flex justify-between items-center mb-6">
                 <div>
                     <h1 className="text-3xl font-bold">Manage Airdrops</h1>

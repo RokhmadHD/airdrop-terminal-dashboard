@@ -26,7 +26,7 @@ export default async function EditAirdropPage({ params }: EditAirdropPageProps) 
     // Kita bandingkan langsung user.id dengan airdrop.created_by
     if (!user) {
         return (
-            <div className="container py-12 text-center">
+            <div className="text-center">
                 <h1 className="text-2xl font-bold">Unauthorized</h1>
                 <p className="text-muted-foreground">You do not have permission to edit this airdrop.</p>
             </div>
@@ -35,7 +35,7 @@ export default async function EditAirdropPage({ params }: EditAirdropPageProps) 
     // -------------------------------------------
 
     return (
-        <div className="container mx-auto py-10">
+        <div className="">
             <div className="mb-8">
                 <h1 className="text-3xl font-bold">Edit Airdrop</h1>
                 <p className="text-muted-foreground">Update the details for: {airdrop.name}</p>

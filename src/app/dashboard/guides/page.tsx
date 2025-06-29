@@ -15,7 +15,7 @@ export default async function AdminGuidesPage() {
     const guides = session ? await getAdminGuides(session.access_token) : [];
     
     return (
-        <div className="container mx-auto py-10">
+        <div className=''>
             <div className="flex justify-between items-center mb-6">
                 <h1 className="text-3xl font-bold">Guide Management</h1>
                 <Button asChild>

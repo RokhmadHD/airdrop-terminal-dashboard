@@ -53,7 +53,7 @@ export function DataTable<TData, TValue>({
     },
   })
   return (
-    <Card className="p-6">
+    <Card className="p-6 bg-muted">
       <div className="flex items-center py-4">
         <Input
           placeholder="Filter by title..."

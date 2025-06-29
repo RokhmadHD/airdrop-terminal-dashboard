@@ -27,7 +27,7 @@ const GuideActions = ({ guide }: { guide: Guide }) => {
             <DropdownMenuTrigger asChild><Button variant="ghost" className="h-8 w-8 p-0"><MoreHorizontal className="h-4 w-4" /></Button></DropdownMenuTrigger>
             <DropdownMenuContent align="end">
                 <DropdownMenuItem asChild><Link href={`/guides/${guide.slug}`}>View Public Page</Link></DropdownMenuItem>
-                <DropdownMenuItem asChild><Link href={`/airdrops/guides/${guide.slug}/edit`}>Edit</Link></DropdownMenuItem>
+                <DropdownMenuItem asChild><Link href={`/dashboard/guides/${guide.slug}/edit`}>Edit</Link></DropdownMenuItem>
                 <DropdownMenuItem onClick={handleTogglePublish}>
                     {guide.status === 'published' ? 'Unpublish' : 'Publish'}
                 </DropdownMenuItem>
